@@ -13,6 +13,7 @@
     "db:studio": "npx drizzle-kit studio"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.7.1",
     "better-auth": "^1.6.26",
     "dotenv": "^17.4.2",
     "drizzle-orm": "1.0.0-rc.4",
