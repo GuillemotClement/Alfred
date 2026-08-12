@@ -1,0 +1,28 @@
+services:
+  # PostgreSQL service
+  postgres:
+    container_name: postgres
+    image: postgres:18-alpine
+    environment:
+      # Database environment variables
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      # Persist database data
+      - pgdata:/var/lib/postgresql
+      # Initialize database with SQL script
+      # - ../init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      # Map host port 5433 to container 5432 for external access
+      - "5432:5432"
+    healthcheck:
+      # Check if Postgres is ready to accept connections
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER -d $${POSTGRES_DB}"]
+      start_period: 15s
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdata:
