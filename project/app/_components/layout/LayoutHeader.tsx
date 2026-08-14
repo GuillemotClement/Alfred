@@ -6,23 +6,28 @@ type LayoutHeader = {
   title: string;
   navigations: NavigationItem[];
   rootHref: string;
-}
+};
 
-export default function LayoutHeader({title, navigations, rootHref}: LayoutHeader){
+export default function LayoutHeader({
+  title,
+  navigations,
+  rootHref,
+}: LayoutHeader) {
   return (
     <div className="flex justify-between py-3 px-5 items-center">
-      <Link href={rootHref} className="btn btn-ghost">{title}</Link>
+      <Link href={rootHref} className="btn btn-ghost">
+        {title}
+      </Link>
       <nav>
-        <ul>
-          {navigations.map(item => (
+        <ul className="flex gap-x-3">
+          {navigations.map((item) => (
             <li key={item.id}>
-              <Linka href={item.href} text={item.text}/>
+              <Linka href={item.href} text={item.text} />
             </li>
-          ) )}
-          <li>
-          </li>
+          ))}
+          <li></li>
         </ul>
       </nav>
     </div>
-  )
+  );
 }

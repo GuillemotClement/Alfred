@@ -28,9 +28,12 @@ export default function Header() {
 
       {session ? (
         <div className="flex-none flex items-center gap-x-5">
-          <ul>
+          <ul className="flex gap-x-3">
             <li>
               <Link href="/house">Foyer</Link>
+            </li>
+            <li>
+              <Link href="/workplace">Travail</Link>
             </li>
           </ul>
           <div className="dropdown dropdown-end">
