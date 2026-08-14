@@ -29,3 +29,13 @@ export type WorkplaceListing = {
   categoryId: number | null;
   categoryName: string | null;
 };
+
+export type WorkplaceDetail = {
+  id: number;
+  name: string;
+  street: string;
+  city: string;
+  categoryId: number | null;
+  categoryName: string | null;
+  image: string | null;
+};

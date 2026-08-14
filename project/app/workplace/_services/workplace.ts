@@ -34,3 +34,24 @@ export const deleteWorkplaceService = async (workplaceId: number) => {
   }
   return deletedWorkplace;
 };
+
+export const getWorkplaceById = async (id: number) => {
+  const [result] = await db
+    .select({
+      id: workplace.id,
+      name: workplace.name,
+      street: workplace.street,
+      city: workplace.city,
+      image: workplace.image,
+      categoryId: workplaceCategory.id,
+      categoryName: workplaceCategory.name,
+    })
+    .from(workplace)
+    .leftJoin(
+      workplaceCategory,
+      eq(workplace.workplaceCategoryId, workplaceCategory.id),
+    )
+    .where(eq(workplace.id, id));
+
+  return result;
+};
