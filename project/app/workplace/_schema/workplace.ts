@@ -20,3 +20,12 @@ export type WorkplaceCategorie = {
   id: number;
   name: string;
 };
+
+export type WorkplaceListing = {
+  id: number;
+  name: string;
+  street: string;
+  city: string;
+  categoryId: number | null;
+  categoryName: string | null;
+};
