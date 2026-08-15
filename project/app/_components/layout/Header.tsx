@@ -74,7 +74,7 @@ export default function Header() {
         </div>
       ) : (
         <div className="flex-none">
-          <ul>
+          <ul className="flex gap-x-3">
             <li>
               <Link href="/login" className="btn btn-primary">
                 Connexion

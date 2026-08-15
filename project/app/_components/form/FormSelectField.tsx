@@ -24,10 +24,14 @@ const FormSelectField = ({
 }: FormSelectField) => {
   return (
     <fieldset className="fieldset my-3">
-      <label htmlFor={id} className="label">
+      <label htmlFor={id} className="fieldset-legend">
         {label}
       </label>
-      <select defaultValue="" className={`select w-full shadow ${error ? "input-error" : ""}`} {...register}>
+      <select
+        defaultValue=""
+        className={`select w-full shadow ${error ? "input-error" : ""}`}
+        {...register}
+      >
         <option disabled={true} className="" value="">
           {textValueDefault}
         </option>
