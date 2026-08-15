@@ -1,39 +1,42 @@
 import { UseFormRegisterReturn } from "react-hook-form";
 
-type FormInputField = {
+type FormInputNumberField = {
   label: string;
   id: string;
-  type?: Type;
   register: UseFormRegisterReturn;
   error?: string;
   placeholder?: string;
+  optional?: string;
+  step?: number;
 };
 
-type Type = "text" | "email" | "email" | "number" | "password";
-
-export default function FormInputField({
+const FormInputNumberField = ({
   label,
   id,
   register,
   error,
-  type = "text",
   placeholder = "",
-}: FormInputField) {
+  step,
+  optional,
+}: FormInputNumberField) => {
   return (
     <fieldset className="fieldset">
-      <label htmlFor={id} className="fieldset-legend">
+      <label className="fieldset-legend" htmlFor={id}>
         {label}
       </label>
       <input
-        type={type}
-        placeholder={placeholder}
-        id={id}
+        type="number"
+        step={step}
         className={`w-full shadow input ${error ? "input-error" : ""}`}
+        placeholder={placeholder}
         {...register}
       />
+      {optional && <div className="label">{optional}</div>}
       {error && (
         <p className="italic text-xs text-red-500 text-center">{error}</p>
       )}
     </fieldset>
   );
-}
+};
+
+export default FormInputNumberField;

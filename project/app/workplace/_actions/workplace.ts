@@ -26,9 +26,11 @@ export const createWorkplace = async (data: CreateWorkplaceFormData) => {
     name: data.name,
     street: data.street,
     city: data.city,
-    postalCode: 56310,
     image: imageDefault,
     workplaceCategoryId: data.categoryId,
+    userId: user.user.id,
+    note: data.note,
+    description: data.description,
   };
 
   try {

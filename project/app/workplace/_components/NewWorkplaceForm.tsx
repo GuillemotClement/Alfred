@@ -14,6 +14,8 @@ import { useState } from "react";
 import FormSelectField from "@/app/_components/form/FormSelectField";
 import { createWorkplace } from "../_actions/workplace";
 import { useRouter } from "next/navigation";
+import FormTextareaField from "@/app/_components/form/FormTextareaField";
+import FormInputNumberField from "@/app/_components/form/FormInputNumberField";
 
 type NewWorkPlaceForm = {
   categories: WorkplaceCategorie[];
@@ -26,6 +28,8 @@ const NewWorkPlaceForm = ({ categories }: NewWorkPlaceForm) => {
     city: "",
     image: "",
     categoryId: undefined,
+    description: "",
+    note: undefined,
   };
 
   const {
@@ -95,6 +99,25 @@ const NewWorkPlaceForm = ({ categories }: NewWorkPlaceForm) => {
         error={errors.categoryId?.message}
         items={categories}
         textValueDefault="Sélectionner une catégorie"
+      />
+
+      <FormTextareaField
+        id="description"
+        label="Commentaire"
+        register={register("description")}
+        error={errors.description?.message}
+        optional=""
+        placeholder="Code d'accès 0000, entrée de service à l'arrière du batiment."
+      />
+
+      <FormInputNumberField
+        id="note"
+        label="Note"
+        register={register("note", { valueAsNumber: true })}
+        error={errors.note?.message}
+        optional=""
+        placeholder="5"
+        step={1}
       />
 
       {globalError && (

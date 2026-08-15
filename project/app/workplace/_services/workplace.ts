@@ -6,7 +6,7 @@ export const getWorkplaceCategories = async () => {
   return db.select().from(workplaceCategory);
 };
 
-export const getWorkplace = async () => {
+export const getWorkplace = async (userId: string) => {
   return db
     .select({
       id: workplace.id,
@@ -15,12 +15,16 @@ export const getWorkplace = async () => {
       city: workplace.city,
       categoryId: workplaceCategory.id,
       categoryName: workplaceCategory.name,
+      description: workplace.description,
+      note: workplace.note,
+      image: workplace.image,
     })
     .from(workplace)
     .leftJoin(
       workplaceCategory,
       eq(workplace.workplaceCategoryId, workplaceCategory.id),
-    );
+    )
+    .where(eq(workplace.userId, userId));
 };
 
 export const deleteWorkplaceService = async (workplaceId: number) => {
