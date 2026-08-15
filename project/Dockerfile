@@ -195,6 +195,14 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
+# --- Permet de lancer les migrations Drizzle --- #
+FROM base AS migrator
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+CMD ["pnpm", "run", "db:migrate"]
+# ----------------------------------------
+
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules

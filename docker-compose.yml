@@ -1,4 +1,13 @@
 services:
+  migrator:
+    build:
+      context: ./project
+      dockerfile: Dockerfile
+      target: migrator
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+    restart: "no"
+
   nextjs:
     build:
       context: ./project
@@ -17,6 +26,8 @@ services:
     # For text and expose next to navigator
     # ports:
     #   - "3000:3000"
-    # depends_on:
-    #   postgres:
-    #     condition: service_healthy
+    depends_on:
+      migrator:
+        condition: service_completed_successfully
+      # postgres:
+      #   condition: service_healthy
