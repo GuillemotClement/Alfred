@@ -1,4 +1,3 @@
-
 export default function Home() {
   return (
     <div className="hero border container mx-auto bg-base-100 min-h-screen">
@@ -10,7 +9,7 @@ export default function Home() {
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
             a id nisi.
           </p>
-          <button className="btn btn-primary">Get Started</button>
+          <button className="btn btn-primary">Get Started test</button>
         </div>
       </div>
     </div>
