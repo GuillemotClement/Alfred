@@ -1,87 +1,33 @@
-# services:
-#   nextjs:
-#     build:
-#       context: ./project
-#       dockerfile: Dockerfile
-#     restart: unless-stopped
-#     environment:
-#       - DATABASE_URL=${DATABASE_URL}
-#       - NODE_ENV=production
-#       - PORT=3000
-#       - HOSTNAME=0.0.0.0
-#       - AUTH_SECRET=${AUTH_SECRET}
-#       - BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
-#       - BETTER_AUTH_URL={BETTER_AUTH_URL}
-#     expose:
-#       - "3000"
-#     depends_on:
-#       postgres:
-#         condition: service_healthy
-
-#   postgres:
-#     container_name: postgres
-#     image: postgres:18-alpine
-#     environment:
-#       # Database environment variables
-#       - POSTGRES_DB=${POSTGRES_DB}
-#       - POSTGRES_USER=${POSTGRES_USER}
-#       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-#     volumes:
-#       # Persist database data
-#       - pgdata:/var/lib/postgresql
-#       # Initialize database with SQL script
-#       # - ../init.sql:/docker-entrypoint-initdb.d/init.sql:ro
-#     ports:
-#       # Map host port 5433 to container 5432 for external access
-#       - "5432:5432"
-#     healthcheck:
-#       # Check if Postgres is ready to accept connections
-#       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER -d $${POSTGRES_DB}"]
-#       start_period: 15s
-#       interval: 15s
-#       timeout: 5s
-#       retries: 5
-
-# volumes:
-#   pgdata:
-
 services:
+  migrator:
+    build:
+      context: ./project
+      dockerfile: Dockerfile
+      target: migrator
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+    restart: "no"
+
   nextjs:
     build:
       context: ./project
       dockerfile: Dockerfile
     restart: unless-stopped
     environment:
-      DATABASE_URL: "${DATABASE_URL}"
-      NODE_ENV: production
-      PORT: "3000"
-      HOSTNAME: "0.0.0.0"
-      AUTH_SECRET: "${AUTH_SECRET}"
-      BETTER_AUTH_SECRET: "${BETTER_AUTH_SECRET}"
-      BETTER_AUTH_URL: "${BETTER_AUTH_URL}"
-    expose:
-      - "3000"
-    # depends_on:
-    #   postgres:
-    #     condition: service_healthy
-
-  # postgres:
-  #   image: postgres:18-alpine
-  #   restart: unless-stopped
-  #   environment:
-  #     POSTGRES_DB: "${POSTGRES_DB}"
-  #     POSTGRES_USER: "${POSTGRES_USER}"
-  #     POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
-  #   volumes:
-  #     - pgdata:/var/lib/postgresql
-  #   healthcheck:
-  #     test:
-  #       - CMD-SHELL
-  #       - pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"
-  #     start_period: 15s
-  #     interval: 15s
-  #     timeout: 5s
-  #     retries: 5
-
-# volumes:
-#   pgdata:
+      - DATABASE_URL=${DATABASE_URL}
+      - NODE_ENV=production
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+      - AUTH_SECRET=${AUTH_SECRET}
+      - BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
+      - BETTER_AUTH_URL=${BETTER_AUTH_URL}
+    # expose:
+    #   - "3000"
+    # For text and expose next to navigator
+    # ports:
+    #   - "3000:3000"
+    depends_on:
+      migrator:
+        condition: service_completed_successfully
+      # postgres:
+      #   condition: service_healthy
