@@ -1,34 +1,60 @@
-name: Quality & Build
+name: CI
 
 on:
   pull_request:
     branches:
       - dev
       - main
+  push:
+    branches:
+      - dev
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  quality_build:
-    name: ESLint, Prettier & Build
+  build:
+    name: Build Next.js
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    defaults:
+      run:
+        working-directory: project
+
+    env:
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: "1"
+      DATABASE_URL: postgresql://build:build@127.0.0.1:5432/build
+      BETTER_AUTH_SECRET: build-only-secret-build-only-secret
+      BETTER_AUTH_URL: http://localhost:3000
+      AUTH_SECRET: build-only-secret-build-only-secret
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.21.0
+          run_install: false
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: npm
+          cache: pnpm
+          cache-dependency-path: project/pnpm-lock.yaml
 
-      - name: Install dependancies
-        run: npm ci
-
-      # - name: Run ESLint
-      #   run: npm run lint
-
-      # - name: Check Prettier
-      #   run: npm run format:check
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Build project
-        run: npm run build
+        run: pnpm build
