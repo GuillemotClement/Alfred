@@ -41,8 +41,6 @@ FROM node:${NODE_VERSION} AS runner
 
 WORKDIR /app
 
-RUN npm install --global pnpm@11.21.0
-
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
@@ -64,5 +62,5 @@ COPY --from=builder --chown=node:node /app/drizzle ./drizzle
 USER node
 
 EXPOSE 3000
-
+ 
 CMD ["node", "server.js"]
