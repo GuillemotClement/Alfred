@@ -198,6 +198,7 @@ RUN \
 # --- Permet de lancer les migrations Drizzle --- #
 FROM base AS migrator
 WORKDIR /app
+RUN corepack enable pnpm
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 CMD ["pnpm", "run", "db:migrate"]
