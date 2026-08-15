@@ -56,14 +56,10 @@ RUN mkdir .next && chown node:node .next
 COPY --from=builder --chown=node:node /app/.next/standalone ./
 COPY --from=builder --chown=node:node /app/.next/static ./.next/static
 
-# Fichiers nécessaires aux commandes pnpm/Drizzle
-COPY --from=builder --chown=node:node /app/package.json ./package.json
+# Fichiers légers nécessaires aux migrations
 COPY --from=builder --chown=node:node /app/drizzle.config.ts ./drizzle.config.ts
 COPY --from=builder --chown=node:node /app/db ./db
 COPY --from=builder --chown=node:node /app/drizzle ./drizzle
-
-# drizzle-kit est une devDependency et n'est normalement pas inclus
-COPY --from=dependencies --chown=node:node /app/node_modules ./node_modules
 
 USER node
 
