@@ -52,7 +52,7 @@ const ListWorkplace = ({ workplaces }: ListWorkplace) => {
                   <div className="avatar">
                     <div className="mask mask-squircle h-12 w-12">
                       <Image
-                        src={workplace.image}
+                        src={workplace.image ? workplace.image : "unknow.jpg"}
                         height={48}
                         width={48}
                         alt={workplace.name}

@@ -34,7 +34,7 @@ export type WorkplaceListing = {
   categoryName: string | null;
   description: string | null;
   note: number;
-  image: string;
+  image: string | null;
 };
 
 export type WorkplaceDetail = {
