@@ -1,0 +1,44 @@
+{
+  // "java.configuration.updateBuildConfiguration": "interactive",
+  "files.associations": {
+    "*.dbclient-js": "javascript",
+    "*.css": "tailwindcss"
+  },
+  // parametre user
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.formatOnSave": true,
+  "[html][angular-html][javascript][typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // test theme
+  // Éditeur : texte et lignes plus espacés
+  // "editor.fontSize": 14,
+  // "editor.lineHeight": 23,
+  // "editor.letterSpacing": 0.5,
+  // "editor.padding.top": 0,
+  // "editor.padding.bottom": 0,
+  // "editor.rulers": [100],
+
+  // Suggestions et paramètres
+  // "editor.suggestFontSize": 14,
+  // "editor.suggestLineHeight": 23,
+  // "editor.parameterHints.enabled": true,
+
+  // Explorateur : lignes plus hautes
+  "workbench.tree.indent": 22,
+
+  // Onglets plus hauts
+  "window.density.editorTabHeight": "default"
+  // "java.compile.nullAnalysis.mode": "automatic",
+  // // FORMAT JAVA
+  // "[java]": {
+  //   "editor.defaultFormatter": "redhat.java",
+  //   "editor.formatOnSave": true,
+  //   "editor.autoIndent": "keep"
+  // },
+  // "java.format.settings.url": ".vscode/eclipse-formatter.xml",
+  // "java.format.settings.profile": "Alfred",
+  // "java.debug.settings.onBuildFailureProceed": true
+}

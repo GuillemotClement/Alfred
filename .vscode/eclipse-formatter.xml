@@ -1,0 +1,26 @@
+
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<profiles version="21">
+  <profile kind="CodeFormatterProfile" name="Alfred" version="21">
+    <!-- Arguments des appels de méthodes -->
+    <setting
+      id="org.eclipse.jdt.core.formatter.alignment_for_arguments_in_method_invocation"
+      value="16"/>
+    <!-- Paramètres des déclarations de méthodes -->
+    <setting
+      id="org.eclipse.jdt.core.formatter.alignment_for_parameters_in_method_declaration"
+      value="49"/>
+    <!-- Arguments des appels de constructeurs : new Exemple(...) -->
+    <setting
+      id="org.eclipse.jdt.core.formatter.alignment_for_arguments_in_allocation_expression"
+      value="49"/>
+    <!-- Paramètres des déclarations de constructeurs -->
+    <setting
+      id="org.eclipse.jdt.core.formatter.alignment_for_parameters_in_constructor_declaration"
+      value="49"/>
+      <!-- Une méthode par ligne, avec un niveau d'indentation -->
+    <setting
+      id="org.eclipse.jdt.core.formatter.alignment_for_selector_in_method_invocation"
+      value="16"/>
+  </profile>
+</profiles> -->
