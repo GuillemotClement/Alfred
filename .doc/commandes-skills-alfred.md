@@ -17,6 +17,12 @@
 
 ## Exemples prêts à copier
 
+`$pr-review` — vérifier une PR avant merge : issues et critères, code, tests et CI. Résultat : rapport Markdown avec preuves, constats priorisés et verdict, affiché sans publication.
+
+Exemple : `$pr-review Examine la PR #15 associée à l'issue #12.` Sans argument, le skill retrouve la PR de la branche courante. Une publication nécessite une demande puis la validation explicite du contenu exact et de sa cible ; aucun merge automatique.
+
+Voir les [workflows détaillés](workflows.md) pour l'ordre des étapes.
+
 | Commande à saisir dans Codex | Résultat attendu |
 |---|---|
 | `$product-owner Je veux initialiser le backend Spring Boot. Définissons le périmètre puis prépare les issues GitHub sans les créer.` | Proposition d'issues avec critères d'acceptation. |

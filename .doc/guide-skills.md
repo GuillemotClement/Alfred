@@ -2,6 +2,22 @@
 
 Le [guide général existant](alfred-guide-skills.md) conserve les usages des autres rôles. Cette page documente le nouveau workflow pr-update sans dupliquer leurs instructions.
 
+Les [workflows de développement](workflows.md) présentent les parcours complets. L'[aide-mémoire](commandes-skills-alfred.md) permet de retrouver rapidement une invocation.
+
+## Revue complète avant merge : `$pr-review`
+
+`$pr-review` sans argument retrouve la PR de la branche courante, sa cible et ses SHA distants, puis examine tout le diff. Plusieurs PR nécessitent un choix ; sans PR, il propose une revue locale sans prétendre avoir revu une PR.
+
+Il lit les issues explicitement associées (liens, références et mots-clés de clôture), leurs critères et décisions. Il ne déduit pas un lien d'une similarité de sujet ; sans issue identifiable, il demande sa référence. Chaque critère est relié à une preuve et un statut : VALIDÉ, PARTIEL, NON VALIDÉ ou NON VÉRIFIABLE.
+
+`$code-review` se concentre sur la qualité technique d'un diff ; `$pr-review` confronte aussi le besoin aux modifications, aux tests et à la CI. `$qa-engineer` accompagne la stratégie et l'écriture des tests ; `$pr-review` examine les preuves et exécute les vérifications pertinentes lorsque possible, sans corriger le code. Implémenté, testé et réellement vérifié restent distincts.
+
+Le rapport intégral dans le chat classe les problèmes en BLOQUANT, IMPORTANT ou SUGGESTION, cite les emplacements, explique les conséquences et propose des pistes. Verdict justifié : PRÊT POUR MERGE, CORRECTIONS RECOMMANDÉES, MERGE BLOQUÉ ou VALIDATION INCOMPLÈTE. Une CI verte ne remplace pas les preuves absentes.
+
+Exemples : `$pr-review` ; `$pr-review Examine la PR #15 liée à l'issue #12.` Ces numéros sont illustratifs. Après corrections et push autorisés, relancer le skill sur la nouvelle tête.
+
+Lecture seule par défaut : aucune publication, correction, création de commit, push, clôture d'issue ou fusion. Pour publier, demander la préparation de la publication, relire le texte exact et la cible puis les valider explicitement. Le skill revérifie la fraîcheur avant envoi et fournit le lien. Le verdict n'est pas une approbation formelle GitHub ni une garantie d'absence de bugs. Voir son [SKILL.md](../.agents/skills/pr-review/SKILL.md).
+
 ## Rôle et invocation
 
 `$pr-update` prépare un commentaire en français sur les évolutions d'une PR. Il ne publie jamais sans validation, ne change pas la description principale et ne modifie ni code, commits, issues ou état de la PR.

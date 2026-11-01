@@ -9,6 +9,7 @@ Reusable workflows are located in `.agents/skills/`.
 - Use `pr-description` when asked to prepare or summarize the main description of a Pull Request.
 - Use `pr-update` when asked to prepare an incremental PR progress comment since the last documented commit. Always present the full comment and commit range, then wait for explicit approval before publication.
 - Use `code-review` when asked to review code or assess a PR's risks.
+- Use `pr-review` for a complete pre-merge review against linked issues, acceptance criteria, code, tests and CI. Read-only by default: show the full report and require explicit validation of the exact content and target before any GitHub publication. Never merge or implicitly approve a PR.
 - Use `git-commit` when asked to propose Conventional Commit messages.
 
 Do not modify files, create commits, push branches, or publish Pull Requests unless explicitly requested.
@@ -112,6 +113,8 @@ Java/Spring et PostgreSQL sont annoncés dans le README, mais aucun backend ni c
 - GitHub Issues porte le backlog opérationnel ; les spécifications détaillées restent dans .doc/features/ sans duplication inutile. Aucun commit, push ou merge de PR dans le rôle Product Owner.
 
 ## Suivi des Pull Requests
+
+- `pr-review` complète `code-review` (qualité technique) et `qa-engineer` (stratégie de tests) par la validation des exigences des issues et un verdict avant merge. `$pr-review` sans argument lance l'analyse complète, sans publication. Voir `.doc/workflows.md` ; aucune transition automatique vers la correction.
 
 - pr-update prépare les évolutions depuis le dernier commentaire marqué alfred-pr-update ; il ne modifie pas la description principale. Son invocation seule ne vaut jamais autorisation de publication.
 - Workflow : développement → message avec git-commit → commit/push seulement sur demande explicite → pr-update → validation du commentaire complet et de la plage → publication → développement suivant. pr-update ne crée jamais de commit ni de push.
