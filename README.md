@@ -31,27 +31,103 @@ Le périmètre et les règles de chaque domaine seront précisés progressivemen
 
 Les versions ci-dessous sont celles déclarées dans `front/package.json`.
 
-| Technologie | Version déclarée | Usage |
-| --- | --- | --- |
-| Angular | ^22.1.0 | Interface utilisateur, composants et routage |
-| TypeScript | ~6.0.2 | Langage du frontend |
-| Signals et RxJS | RxJS ~7.8.0 | Réactivité et gestion des flux asynchrones |
-| Tailwind CSS | ^4.1.12 | Mise en forme de l’interface |
-| daisyUI | ^5.7.50 | Composants CSS |
-| Lucide | ^1.66.0 | Icônes |
-| Vitest | ^4.0.8 | Tests unitaires via Angular CLI |
-| ESLint et Prettier | — | Analyse statique et formatage |
-| pnpm | 11.21.0 | Gestion des dépendances et lancement des scripts |
+| Technologie        | Version déclarée | Usage                                            |
+| ------------------ | ---------------- | ------------------------------------------------ |
+| Angular            | ^22.1.0          | Interface utilisateur, composants et routage     |
+| TypeScript         | ~6.0.2           | Langage du frontend                              |
+| Signals et RxJS    | RxJS ~7.8.0      | Réactivité et gestion des flux asynchrones       |
+| Tailwind CSS       | ^4.1.12          | Mise en forme de l’interface                     |
+| daisyUI            | ^5.7.50          | Composants CSS                                   |
+| Lucide             | ^1.66.0          | Icônes                                           |
+| Vitest             | ^4.0.8           | Tests unitaires via Angular CLI                  |
+| ESLint et Prettier | —                | Analyse statique et formatage                    |
+| pnpm               | 11.21.0          | Gestion des dépendances et lancement des scripts |
 
 GitHub Actions vérifie actuellement le formatage, le lint et la compilation du frontend avec Node.js 24. Les tests sont configurés dans le projet, mais ne sont pas encore exécutés par ce workflow.
 
-### Backend et base de données prévus
+### Backend
 
 - **Java et Spring Boot** : développement du backend et de l’API.
-- **PostgreSQL** : stockage des données.
-- **Adminer** : administration de la base de données.
 
-Le backend et la configuration de la base de données ne sont pas encore présents dans le dépôt. Leurs versions et leurs instructions d’installation seront précisées lors de leur ajout.
+Le backend n’est pas encore présent dans le dépôt. Ses versions et ses instructions d’installation seront précisées lors de son ajout.
+
+### Base de données
+
+| Technologie  | Version déclarée | Usage                                  |
+| ------------ | ---------------- | -------------------------------------- |
+| `PostgreSQL` | `18.6 Alpine`    | Stockage des données                   |
+| `Adminer`    | `6.2.0`          | Administration de la base de données |
+
+---
+
+## Commandes
+
+### Docker
+
+Prérequis : Docker installé avec Docker Compose v2 (`docker compose version`), moteur Docker démarré avec prise en charge des conteneurs Linux, ports `5432` et `8080` disponibles. Les commandes suivantes sont lancées depuis la racine du projet.
+
+```shell
+# Démarrer PostgreSQL et Adminer en arrière-plan
+docker compose up -d
+
+# Arrêter et supprimer les conteneurs, en conservant les données
+docker compose down
+
+# Supprimer les conteneurs ET définitivement toutes les données du volume
+docker compose down -v
+```
+
+Le démarrage télécharge les images si nécessaire. Attendre que PostgreSQL soit prêt avant de se connecter ; `docker compose ps` permet de consulter son état et `docker compose logs db` ses journaux.
+
+**Arrêt courant :** `docker compose down` conserve le volume et les données. Relancer `docker compose up -d` pour retrouver la base.
+
+**Remise à zéro volontaire :** `docker compose down -v` supprime définitivement les données. Vérifier le nom du volume concerné et tester cette procédure uniquement sur une base de test. Relancer ensuite `docker compose up -d` pour initialiser une base vide avec les paramètres courants.
+
+---
+
+## Utilisation
+
+### Adminer
+
+Ouvrir [Adminer local](http://localhost:8080) et renseigner les paramètres suivants, à adapter si la configuration a été personnalisée :
+
+| Champ | Valeur par défaut |
+| --- | --- |
+| Système | PostgreSQL |
+| Serveur | `db` |
+| Utilisateur | `pg` |
+| Mot de passe | `pg` |
+| Base de données | `alfred` |
+
+Adminer utilise le nom du service Docker `db`. Depuis un outil installé sur la machine hôte, utiliser `localhost` et le port `5432`.
+
+## Variables d’environnement
+
+Le fichier `docker-compose.yml` fournit des valeurs par défaut pour le développement local. Le démarrage fonctionne sans fichier `.env`.
+
+Pour personnaliser la configuration, créer un fichier `.env` à la racine du projet :
+
+```dotenv
+POSTGRES_USER=pg
+POSTGRES_PASSWORD=pg
+POSTGRES_DB=alfred
+POSTGRES_DATA_PATH=/var/lib/postgresql
+POSTGRES_VOLUME_NAME=postgres_data
+```
+
+| Variable | Rôle |
+| --- | --- |
+| `POSTGRES_USER` | Utilisateur PostgreSQL créé à l’initialisation |
+| `POSTGRES_PASSWORD` | Mot de passe local de cet utilisateur |
+| `POSTGRES_DB` | Base créée à l’initialisation |
+| `POSTGRES_DATA_PATH` | Chemin de montage du volume dans le conteneur ; conserver `/var/lib/postgresql` pour PostgreSQL 18 |
+| `POSTGRES_VOLUME_NAME` | Nom du volume Docker persistant |
+
+Les valeurs ci-dessus sont les valeurs par défaut et des exemples locaux. Ne pas versionner de secret réel ni ajouter au suivi Git un fichier `.env` qui en contient. Le dépôt ne fournit actuellement pas d’exclusion Git globale pour ce fichier.
+
+Pour plusieurs copies du projet, choisir un `POSTGRES_VOLUME_NAME` distinct pour chacune : le nom par défaut est partagé sur le même moteur Docker. Supprimer ce volume affecterait toutes les copies qui l’utilisent.
+
+Les variables `POSTGRES_USER`, `POSTGRES_PASSWORD` et `POSTGRES_DB` initialisent une base vide. Les modifier ne change pas les identifiants ni la base déjà stockés dans un volume existant.
 
 ## Notes techniques
 
