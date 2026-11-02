@@ -1,0 +1,14 @@
+server:
+  port: 8077
+spring:
+  jpa:
+    show-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/alfred
+    username: pg
+    password: pg
+logging:
+  level:
+    root: ERROR
+# app:
+#   public-base-url: http://localhost:8077

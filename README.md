@@ -47,9 +47,17 @@ GitHub Actions vérifie actuellement le formatage, le lint et la compilation du 
 
 ### Backend
 
-- **Java et Spring Boot** : développement du backend et de l’API.
+Le backend est présent dans `alfredapi/`. Son `pom.xml` déclare **Java 25** et **Spring Boot 4.1.2**, avec Spring MVC, Spring Data JPA, Spring Security et Flyway. Ces versions déclarées ne prouvent pas les versions installées ni le bon fonctionnement de l’application.
 
-Le backend n’est pas encore présent dans le dépôt. Ses versions et ses instructions d’installation seront précisées lors de son ajout.
+Les conventions d’architecture validées sont les suivantes :
+
+- Organisation par domaine métier dans `features/<domaine>`, avec plusieurs entités possibles dans un domaine, par exemple `Article` et `ArticleCategory` dans `article`.
+- Couches internes créées au besoin : `controller`, `service`, `repository`, `entity`, `mapper`, `dto/request` et `dto/response` ; packages Java en minuscules.
+- `core` réservé aux préoccupations techniques transversales ; échanges entre domaines par des points d’entrée explicites, sans accès direct aux repositories des autres domaines.
+- Architecture par domaine avec des couches internes, compatible avec une démarche DDD ; les règles métier et les agrégats seront précisés selon les cas d’utilisation.
+- Schéma géré par Flyway, Hibernate en `ddl-auto: validate`. Migrations dans `alfredapi/src/main/resources/db/migration/`, nommées `V{x}__{feature_action}.sql`, avec une numérotation globale. Une migration déjà appliquée dans un environnement partagé évolue par une nouvelle migration.
+
+Voir les [choix d’architecture détaillés](.doc/architecture/backend.md) et les [instructions pour les agents du backend](alfredapi/AGENTS.md).
 
 ### Base de données
 
@@ -132,7 +140,7 @@ Les variables `POSTGRES_USER`, `POSTGRES_PASSWORD` et `POSTGRES_DB` initialisent
 ## Notes techniques
 
 - [Angular : installation, démarrage, génération et outils de développement](.doc/angular/commandes.md).
-- [Spring Boot : commandes de référence pour le futur backend](.doc/spring-boot/commandes.md).
+- [Spring Boot : commandes de référence](.doc/spring-boot/commandes.md).
 
 ## Exécuter la CI en local
 

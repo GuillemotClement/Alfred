@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: alfredapi
+    # lance le profil de dev par defaut => a confirmer en prod
+  profiles:
+    default: dev
+  jpa:
+    # database: POSTGRESQL
+    # show-sql: true
+    hibernate:
+      # flyway se charge de créer et faire évoluer les tables. hibernate check la correspondance
+      ddl-auto: validate
+    # properties:
+    #   hibernate:
+    #     dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  # datasource:
+  #   url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/alfred}
+  #   username: ${SPRING_DATASOURCE_USERNAME:pg}
+  #   password: ${SPRING_DATASOURCE_PASSWORD:pg}

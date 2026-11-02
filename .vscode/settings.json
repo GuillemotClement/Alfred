@@ -27,7 +27,7 @@
   // "editor.parameterHints.enabled": true,
 
   // Explorateur : lignes plus hautes
-  "workbench.tree.indent": 22,
+  "workbench.tree.indent": 15,
 
   // Onglets plus hauts
   "window.density.editorTabHeight": "default"
