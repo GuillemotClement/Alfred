@@ -1,0 +1,12 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/front"
+    target-branch: "dev"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "maven"
+    directory: "/back"
+    target-branch: "dev"
+    schedule:
+      interval: "weekly"
