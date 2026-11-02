@@ -151,3 +151,42 @@ act
 ```
 
 Le fichier `.actrc` configure l’image Ubuntu utilisée pour cette exécution locale.
+
+### Vérifications du backend
+
+Prérequis : un JDK 25 et, pour les tests, une base PostgreSQL disponible. Le Maven Wrapper fournit la version Maven du projet.
+
+Depuis la racine du dépôt, démarrer la base locale :
+
+```bash
+docker compose up -d db
+docker compose ps db
+```
+
+Attendre que le service `db` soit indiqué comme `healthy`. Le profil `dev`, actif par défaut, utilise `localhost:5432/alfred`, avec l’utilisateur et le mot de passe `pg`. Si la base locale est personnalisée, adapter `SPRING_DATASOURCE_URL`, `SPRING_DATASOURCE_USERNAME` et `SPRING_DATASOURCE_PASSWORD` dans le terminal.
+
+Depuis `alfredapi/`, sous Linux, macOS ou WSL :
+
+```bash
+cd alfredapi
+
+# Vérifier le style Java, sans modifier le code
+bash ./mvnw --batch-mode checkstyle:check -Dcheckstyle.consoleOutput=true
+
+# Compiler, exécuter les tests et générer le JAR
+bash ./mvnw --batch-mode verify
+```
+
+Sous Windows avec PowerShell, remplacer `bash ./mvnw` par `.\mvnw.cmd`.
+
+Checkstyle ne nécessite pas PostgreSQL. Les tests de contexte Spring nécessitent la base. Une violation de style, une erreur de compilation ou un test en échec fait échouer la commande correspondante. Le JAR est produit dans `alfredapi/target/` ; il n’est pas publié par le workflow.
+
+### Workflow backend avec act
+
+Le workflow GitHub démarre sa propre base PostgreSQL temporaire. Pour le reproduire avec `act`, depuis la racine du dépôt :
+
+```bash
+act pull_request -W .github/workflows/ci_backend.yml -j backend
+```
+
+Le port local `5432` doit être libre. Si la base du Compose l’occupe, l’arrêter temporairement avec `docker compose stop db`, puis la redémarrer après le test avec `docker compose start db`. Ces commandes conservent ses données.
