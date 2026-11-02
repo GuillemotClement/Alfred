@@ -57,7 +57,7 @@ Choisir le rôle le plus précis, avec `tech-mentor` pour l'accompagnement trans
 
 - Le code applicatif présent est dans `front/`, avec ses instructions spécifiques dans `front/AGENTS.md` : Angular déclaré ^22.1.0, TypeScript ~6.0.2, RxJS ~7.8.0, pnpm 11.21.0, Signals, Tailwind CSS 4 et daisyUI 5. Ce sont les versions déclarées, pas une vérification des dépendances installées.
 - Tests configurés via Angular et Vitest 4 ; CI GitHub Actions avec Node 24, formatage, lint et build. Le workflow actuel ne lance pas les tests.
-- Java/Spring et PostgreSQL sont annoncés dans le README ; aucun backend, configuration JPA/Security ou Docker n'a été trouvé lors de l'inspection. Les traiter comme objectifs à confirmer, sans prétendre qu'ils sont implémentés. Revérifier le dépôt avant de conseiller une évolution.
+- Mise à jour du 2 novembre 2026 : le backend est présent dans `alfredapi/` (Java 25 et Spring Boot 4.1.2 déclarés), avec JPA, Security, Flyway et une configuration PostgreSQL. Le Compose racine déclare PostgreSQL et Adminer. Lire `alfredapi/AGENTS.md` et `.doc/architecture/backend.md` avant toute intervention backend. Ces déclarations ne prouvent pas le fonctionnement ni les versions installées ; revérifier les fichiers actuels.
 
 ## Principes pédagogiques
 
@@ -103,7 +103,7 @@ Choisir le rôle le plus précis. Partager besoins, hypothèses et décisions en
 
 Le code présent est dans `front/`, avec des conventions spécifiques dans `front/AGENTS.md`. Versions déclarées : Angular ^22.1.0, TypeScript ~6.0.2, RxJS ~7.8.0 et pnpm 11.21.0. Signals, Tailwind CSS 4 et daisyUI 5 sont présents. Tests configurés via Angular/Vitest 4. CI GitHub Actions avec Node 24, formatage, lint et build ; le workflow actuel ne lance pas les tests. Ces déclarations ne prouvent pas les versions installées.
 
-Java/Spring et PostgreSQL sont annoncés dans le README, mais aucun backend ni configuration JPA, Spring Security ou Docker n'a été trouvé. Les traiter comme objectifs à confirmer. Revérifier le dépôt avant de conseiller une évolution.
+Mise à jour du 2 novembre 2026 : le backend est présent dans `alfredapi/` (Java 25 et Spring Boot 4.1.2 déclarés), avec JPA, Security, Flyway et une configuration PostgreSQL. Le Compose racine déclare PostgreSQL et Adminer. Lire `alfredapi/AGENTS.md` et `.doc/architecture/backend.md` avant toute intervention backend. Ces déclarations ne prouvent pas le fonctionnement ni les versions installées ; revérifier les fichiers actuels.
 
 ## Backlog GitHub Issues
 

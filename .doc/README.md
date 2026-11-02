@@ -10,9 +10,9 @@ Les nouveaux documents projet sont centralisés ici. Les README existants à la 
 - `spring-boot/` : notes Spring Boot par notion, à commencer par les [commandes](spring-boot/commandes.md).
 - [Catalogue visuel](design/README.md) et [guidelines](design/guidelines.md).
 - `features/` : spécifications, user stories, critères et tâches, créés sur demande après clarification du besoin.
-- `architecture/` : décisions techniques, comparaisons, diagrammes et ADR, créés sur demande.
+- `architecture/` : décisions techniques, comparaisons, diagrammes et ADR ; voir les [conventions du backend](architecture/backend.md).
 
-Les dossiers `features/` et `architecture/` seront créés au premier document utile. Le [suivi pédagogique](../.agents/learning/progress.md) et la [roadmap](../.agents/learning/roadmap.md) restent dans .agents/learning/ : ce sont des données de mentorat.
+Le dossier `features/` sera créé au premier document utile. Le [suivi pédagogique](../.agents/learning/progress.md) et la [roadmap](../.agents/learning/roadmap.md) restent dans .agents/learning/ : ce sont des données de mentorat.
 
 Les notes techniques sont regroupées par technologie, avec un fichier Markdown par notion (par exemple `angular/formulaires.md`). Les liens Markdown relatifs permettent de naviguer dans le dépôt et dans Obsidian en ouvrant le dépôt ou `.doc/` comme coffre. Le lien « Retour au README » des notes vise la racine du dépôt ; il reste hors du coffre si seul `.doc/` est ouvert.
 
