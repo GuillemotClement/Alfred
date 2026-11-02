@@ -30,15 +30,25 @@
   "workbench.tree.indent": 15,
 
   // Onglets plus hauts
-  "window.density.editorTabHeight": "default"
-  // "java.compile.nullAnalysis.mode": "automatic",
-  // // FORMAT JAVA
-  // "[java]": {
-  //   "editor.defaultFormatter": "redhat.java",
-  //   "editor.formatOnSave": true,
-  //   "editor.autoIndent": "keep"
-  // },
-  // "java.format.settings.url": ".vscode/eclipse-formatter.xml",
-  // "java.format.settings.profile": "Alfred",
-  // "java.debug.settings.onBuildFailureProceed": true
+  "window.density.editorTabHeight": "default",
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java",
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "java.format.enabled": true,
+  "java.format.settings.url": ".vscode/eclipse-formatter.xml",
+  "java.format.settings.profile": "Alfred",
+  "java.sources.organizeImports.starThreshold": 999,
+  "java.sources.organizeImports.staticStarThreshold": 999,
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.checkstyle.version": "14.4.0",
+  "java.checkstyle.configuration": "${workspaceFolder}/alfredapi/config/checkstyle/checkstyle.xml"
 }
