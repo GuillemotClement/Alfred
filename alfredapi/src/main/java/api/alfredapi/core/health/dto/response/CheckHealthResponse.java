@@ -1,6 +1,5 @@
-package api.alfredapi.core.health.DTO.response;
+package api.alfredapi.core.health.dto.response;
 
-import java.time.Instant;
 
 public record CheckHealthResponse(
   String message,

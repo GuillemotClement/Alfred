@@ -3,8 +3,7 @@ package api.alfredapi.core.health.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import api.alfredapi.core.health.DTO.response.CheckHealthResponse;
-import lombok.RequiredArgsConstructor;
+import api.alfredapi.core.health.dto.response.CheckHealthResponse;
 
 import java.time.Instant;
 import java.time.ZoneId;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController 
 @RequestMapping("/api/check-health")
-@RequiredArgsConstructor 
 public class HealthController {
 
   @GetMapping()
