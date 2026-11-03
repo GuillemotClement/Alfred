@@ -10,7 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "format": "prettier --write ./src",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check ./src"
   },
   "private": true,
   "dependencies": {
