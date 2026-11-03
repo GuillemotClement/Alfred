@@ -11,6 +11,19 @@
     <setting id="org.eclipse.jdt.core.formatter.wrap_outer_expressions_when_nested" value="false"/>
     <setting id="org.eclipse.jdt.core.formatter.alignment_for_parameters_in_method_declaration" value="81"/>
     <setting id="org.eclipse.jdt.core.formatter.alignment_for_parameters_in_constructor_declaration" value="81"/>
+    <setting id="org.eclipse.jdt.core.formatter.alignment_for_record_components" value="49"/>
+    <setting id="org.eclipse.jdt.core.formatter.parentheses_positions_in_record_declaration" value="separate_lines_if_wrapped"/>
+    <setting id="org.eclipse.jdt.core.formatter.brace_position_for_record_declaration" value="end_of_line"/>
+    <setting id="org.eclipse.jdt.core.formatter.keep_record_declaration_on_one_line" value="one_line_if_empty"/>
+    <setting id="org.eclipse.jdt.core.formatter.alignment_for_arguments_in_annotation" value="49"/>
+    <setting id="org.eclipse.jdt.core.formatter.parentheses_positions_in_annotation" value="separate_lines_if_wrapped"/>
+    <setting id="org.eclipse.jdt.core.formatter.alignment_for_annotations_on_parameter" value="49"/>
+    <setting id="org.eclipse.jdt.core.formatter.alignment_for_annotations_on_field" value="49"/>
+    <setting id="org.eclipse.jdt.core.formatter.alignment_for_annotations_on_method" value="49"/>
+    <setting id="org.eclipse.jdt.core.formatter.alignment_for_annotations_on_type" value="49"/>
+    <setting id="org.eclipse.jdt.core.formatter.insert_new_line_after_annotation_on_parameter" value="insert"/>
+    <setting id="org.eclipse.jdt.core.formatter.insert_new_line_after_annotation_on_record_parameter" value="insert"/>
+    <setting id="org.eclipse.jdt.core.formatter.insert_new_line_after_annotation_on_field" value="insert"/>
     <setting id="org.eclipse.jdt.core.formatter.parentheses_positions_in_method_delcaration" value="separate_lines_if_wrapped"/>
     <setting id="org.eclipse.jdt.core.formatter.parentheses_positions_in_constructor_declaration" value="separate_lines_if_wrapped"/>
     <setting id="org.eclipse.jdt.core.formatter.alignment_for_selector_in_method_invocation" value="49"/>

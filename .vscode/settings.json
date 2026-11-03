@@ -31,7 +31,7 @@
 
   // Onglets plus hauts
   "window.density.editorTabHeight": "default",
-  "java.configuration.updateBuildConfiguration": "interactive",
+  "java.configuration.updateBuildConfiguration": "automatic",
   "[java]": {
     "editor.defaultFormatter": "redhat.java",
     "editor.formatOnSave": true,
@@ -61,6 +61,9 @@
     "service": "folder_components",
     "resources": "folder_config",
     "alfredapi": "folder_server",
-    "front": "folder_client"
-  }
+    "front": "folder_client",
+    "repository": "folder_database"
+  },
+  // option sonore
+  "accessibility.signalOptions.volume": 0
 }
