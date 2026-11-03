@@ -1,0 +1,15 @@
+<div class="flex w-full items-center gap-5 rounded-2xl p-5 bg-white">
+  <!-- BLOC DU LOGO -->
+  <!-- /10 permet d'indiquer une transparence -->
+  <div
+    class="flex h-15 w-15 shrink-0 items-center justify-center bg-primary/10 text-primary rounded-2xl"
+  >
+    <svg [lucideIcon]="icon()"></svg>
+  </div>
+
+  <!-- BLOC DU TEXT -->
+  <div class="min-w-0 flex-1">
+    <p class="text-xl font-bold">{{ title() }}</p>
+    <p>{{ description() }}</p>
+  </div>
+</div>
