@@ -1,5 +1,7 @@
 # Catalogue des maquettes
 
+La [page d’inscription](pages/inscription/README.md) possède une référence desktop validée (carte centrée), accompagnée de déclinaisons erreur de champ, erreur serveur et mobile à valider.
+
 La [page d’accueil publique](pages/accueil-public/README.md) possède une référence desktop validée : navigation supérieure, présentation en deux colonnes et footer. Les premières explorations restent consultables ; aucune version mobile n’est validée.
 
 Consulter les [guidelines](guidelines.md) avant de proposer une direction.
