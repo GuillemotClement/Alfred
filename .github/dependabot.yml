@@ -6,7 +6,7 @@ updates:
     schedule:
       interval: "weekly"
   - package-ecosystem: "maven"
-    directory: "/back"
+    directory: "/alfredapi"
     target-branch: "dev"
     schedule:
       interval: "weekly"
