@@ -1,0 +1,18 @@
+---
+title: Gestion utilisateur
+---
+
+erDiagram
+  USERS
+
+USERS {
+  int id PK 
+  string email UK 
+  string username UK 
+  string password
+  timestamptz created_at 
+  timestamptz updated_at
+  boolean email_verified "Valeur par default FALSE, permet de savoir si email est verifier"
+  boolean is_enabled "par default True, indique que le compte est actif"
+  string role "par default role USER. Permet de gerer les droits du compte"
+}
