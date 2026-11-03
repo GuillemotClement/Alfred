@@ -1,0 +1,36 @@
+<div class="flex flex-col items-stretch min-h-full gap-10 px-4 md:flex-row md:items-center md:px-0">
+  <!-- BLOC DE GAUCHE -->
+  <div class="flex-1 flex flex-col justify-center min-w-0">
+    <div class="badge border border-gray-300 text-center mb-3">
+      Projet en cours de développement
+    </div>
+    <p class="text-6xl font-bold mb-5">Organisez votre foyer, simplement.</p>
+    <p class="text-gray-400 text-3xl">
+      Un espace commun pour mieux partager les tâches et préparer le quotidien.
+    </p>
+  </div>
+
+  <!-- BLOC DE DROITE -->
+  <div class="bg-gray-200 flex-1 flex flex-col gap-y-7 rounded-2xl p-10 min-w-0">
+    <p class="text-3xl font-bold">À venir dans Alfred</p>
+
+    <!-- bloc avec le logo -->
+    <app-home-feature
+      [icon]="calendarIcon"
+      title="Planning partagé"
+      description="Visualiser et organisez les activités de toute la famille au même endroit"
+    />
+
+    <app-home-feature
+      [icon]="shoppingIcon"
+      title="Liste de course"
+      description="Ajoutez, partagez et suivez vos courses en toute simplicité"
+    />
+
+    <app-home-feature
+      [icon]="houseIcon"
+      title="Tâches du foyer"
+      description="Répartissez les tâches et suivez leur avancement ensemble."
+    />
+  </div>
+</div>
