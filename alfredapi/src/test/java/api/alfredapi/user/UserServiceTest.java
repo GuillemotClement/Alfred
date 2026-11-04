@@ -167,10 +167,47 @@ public class UserServiceTest {
       .save(any(User.class));
   }
 
-  @Test 
-  void usernameAndEmailShouldBeNormalize(){
-    RegisterUserRequest request = new RegisterUserRequest("MaSuperAdresse@mail.com", "GiZmo", "passwordesttropdark");
+  @Test
+  void usernameAndEmailShouldBeNormalize() {
+    RegisterUserRequest request = new RegisterUserRequest("  MaSuperAdresse@mail.com  ", "GiZmo",
+      "passwordesttropdark");
 
-    
+    String normalizedEmail = "masuperadresse@mail.com";
+    String normalizedUsername = "gizmo";
+
+    // mock du résultat du check si le mot de passe est compromis
+    when(compromisedPasswordChecker
+      .check(request
+        .password()))
+          .thenReturn(new CompromisedPasswordDecision(false));
+
+    // ACT
+    // appel de la méthode tester
+    userService
+      .createUser(request);
+
+    // ASSERT
+    // récupère l'objet User que le service a transmis a save()
+    ArgumentCaptor<User> captor = ArgumentCaptor
+      .forClass(User.class);
+    // permet de vérifier que l'appel a la methode a bien ete realiser, et recupere
+    // l'argument recu
+    verify(userRepository)
+      .save(captor
+        .capture());
+
+    // test qu'on fait les checks email et username avec les valeurs normaliser
+    verify(userRepository)
+      .existsByEmail(normalizedEmail);
+    verify(userRepository)
+      .existsByUsername(normalizedUsername);
+
+    User userToSave = captor
+      .getValue();
+
+    assertEquals(normalizedEmail, userToSave
+      .getEmail());
+    assertEquals(normalizedUsername, userToSave
+      .getUsername());
   }
 }
